@@ -20,24 +20,50 @@
     <script>
 
 function initMap() {
-  var theirLatLng = {lat: -25.363, lng: 131.044};
+  // var theirLatLng = {lat: -25.363, lng: 131.044};
 
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: theirLatLng
-  });
+  // var map = new google.maps.Map(document.getElementById('map'), {
+  //   zoom: 4,
+  //   center: theirLatLng
+  // });
 
-  var theirmarker = new google.maps.Marker({
-    position: theirLatLng,
-    map: map,
-    title: 'Hello World!'
-  });
+  // var theirmarker = new google.maps.Marker({
+  //   position: theirLatLng,
+  //   map: map,
+  //   title: 'Hello World!'
+  // });
 
-  var myLatLng = { lat: 49.2818872, lng: -123.1103765};
+  var myLatLng = { lat: 49.28208, lng: -123.108248};
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 15,
     center: myLatLng
+  });
+
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '</div>'+
+      '<h1 id="firstHeading" class="firstHeading">Lighthouse Labs</h1>'+
+      '<div id="bodyContent">'+
+      '<p><b>Lighthouse Labs</b>, also referred to as <b>LHL</b>, is a large ' +
+      'sandstone rock formation in the southern part of the '+
+      'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) '+
+      'south west of the nearest large town, Alice Springs; 450&#160;km '+
+      '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major '+
+      'features of the Uluru - Kata Tjuta National Park. Uluru is '+
+      'sacred to the Pitjantjatjara and Yankunytjatjara, the '+
+      'Aboriginal people of the area. It has many springs, waterholes, '+
+      'rock caves and ancient paintings. Uluru is listed as a World '+
+      'Heritage Site.</p>'+
+      '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
+      'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
+      '(last visited June 22, 2009).</p>'+
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString,
+    maxWidth: 200
   });
 
   var myMarker = new google.maps.Marker({
@@ -45,10 +71,17 @@ function initMap() {
     map: map,
     title: 'Hello Vancouver!'
   });
-
-  var transitLayer = new google.maps.TransitLayer();
-  transitLayer.setMap(map);
+  
+  myMarker.addListener('click', function() {
+    infowindow.open(map, myMarker);
+  });
 }
+
+
+
+  // var transitLayer = new google.maps.TransitLayer();
+  // transitLayer.setMap(map);
+// }
 
     </script>
     <script async defer
